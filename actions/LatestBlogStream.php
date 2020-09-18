@@ -65,39 +65,6 @@ class LatestBlogStream extends ContentContainerStream
         }
     }
 
-    /**
-     * Workaround for HumHub v1.3.10 since in this version self::renderEntry was used instead of static::renderEntry.
-     *
-     * @param Content $content
-     * @return array
-     * @throws \Exception
-     */
-    public static function getContentResultEntry(Content $content)
-    {
-        $result = [];
-
-        // Get Underlying Object (e.g. Post, Poll, ...)
-        $underlyingObject = $content->getPolymorphicRelation();
-        if ($underlyingObject === null) {
-            throw new Exception('Could not get contents underlying object! - contentid: ' . $content->id);
-        }
-
-        // Fix for newly created content
-        if ($content->created_at instanceof Expression) {
-            $content->created_at = date('Y-m-d G:i:s');
-            $content->updated_at = $content->created_at;
-        }
-
-        $underlyingObject->populateRelation('content', $content);
-
-        $result['output'] = static::renderEntry($underlyingObject, false);
-        $result['pinned'] = (boolean) $content->pinned;
-        $result['archived'] = (boolean) $content->archived;
-        $result['guid'] = $content->guid;
-        $result['id'] = $content->id;
-
-        return $result;
-    }
 
     public static function renderEntry(ContentActiveRecord $record, $options =  [], $partial = true)
     {
