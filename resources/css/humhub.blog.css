@@ -1,0 +1,91 @@
+#latestBlogStream li {
+  cursor: pointer;
+}
+#latestBlogStream .streamMessage {
+  margin-left: 10px;
+}
+#latestBlogStream .media-left {
+  padding-right: 10px;
+}
+#latestBlogStream .media-heading {
+  margin-bottom: 2px;
+}
+#latestBlogStream #latestBlogStreamContents {
+  max-height: 360px;
+}
+#latestBlogStream #latestBlogStreamContents li:last-of-type {
+  border: 0;
+}
+#blog-root {
+  padding: 5px;
+}
+#blog-root .blog-welcome {
+  padding-top: 80px;
+  padding-bottom: 180px;
+}
+#blog-root .blog-welcome h1 {
+  font-size: 37px;
+  font-weight: 200;
+}
+#blog-root .blog-welcome h2 {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 24px;
+  margin: 10px 0;
+}
+#blog-root .blog-header {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+#blog-root .blog-header .media-left {
+  padding-right: 10px;
+}
+#blog-root .blog-header .media-body .time {
+  color: #8b8b8b;
+}
+#blog-root .blog-header .media-body .media-heading {
+  margin-bottom: 2px;
+}
+#blog-root .blog-install-info {
+  margin: 0;
+}
+#blog-root .blog-navigation {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+#blog-root .blog-navigation .blog-nav-link {
+  min-height: 74px;
+}
+#blog-root .blog-navigation .blog-nav-link:first-child {
+  border-right: 1px solid #000000;
+}
+#blog-root .blog-navigation .main-nav-link {
+  text-decoration: underline;
+  font-size: 1.2em;
+  font-weight: bold;
+  line-height: 1em;
+}
+#blog-root .blog-navigation .main-nav-link i {
+  margin: 0 10px;
+  font-weight: normal;
+}
+#blog-root .blog-navigation p {
+  margin-top: 15px;
+  margin-bottom: 2px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+#blog-root .blog-navigation .time {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #777777;
+}
+#blog-content-addon .wall-entry-controls,
+#blog-content-addon .wall-entry-controls a {
+  margin-top: 0;
+}
+#latest-blog-snippet .panel-body {
+  padding: 0;
+}
+/*# sourceMappingURL=humhub.blog.css.map */
