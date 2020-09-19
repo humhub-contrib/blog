@@ -2,14 +2,11 @@
 
 namespace humhub\modules\blog\actions;
 
-use Yii;
-use yii\db\Expression;
-use yii\web\Response;
-use Exception;
-use humhub\modules\blog\integration\BlogService;
 use humhub\modules\blog\widgets\LatestBlogsStreamEntry;
 use humhub\modules\content\components\ContentActiveRecord;
-use humhub\modules\content\models\Content;
+use Yii;
+use yii\web\Response;
+use humhub\modules\blog\integration\BlogService;
 use humhub\modules\space\models\Space;
 use humhub\modules\stream\actions\ContentContainerStream;
 use humhub\modules\stream\models\StreamQuery;
@@ -17,6 +14,11 @@ use humhub\modules\stream\models\StreamQuery;
 
 class LatestBlogStream extends ContentContainerStream
 {
+    /**
+     * @inheritdoc
+     */
+    public $streamQueryClass = StreamQuery::class;
+
     public function init()
     {
         if($this->isEnabled()) {
@@ -31,7 +33,7 @@ class LatestBlogStream extends ContentContainerStream
      */
     public function run()
     {
-        if(!$this->isEnabled()) {
+        if (!$this->isEnabled()) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [];
         }
@@ -39,16 +41,16 @@ class LatestBlogStream extends ContentContainerStream
         return parent::run();
     }
 
-    /**
-     * @inheritdoc
-     */
-    public $streamQueryClass = StreamQuery::class;
-
     protected function setActionSettings()
     {
         parent::setActionSettings();
         $this->streamQuery->channel = null;
     }
+
+    public static function renderEntry(ContentActiveRecord $record, $options =  [], $partial = true)
+    {
+         return LatestBlogsStreamEntry::widget(['blog' => $record]);
+     }
 
     /**
      * @inheritdoc
@@ -63,12 +65,6 @@ class LatestBlogStream extends ContentContainerStream
                 $this->activeQuery->andWhere(['custom_pages_container_page.admin_only' => 0]);
             }
         }
-    }
-
-
-    public static function renderEntry(ContentActiveRecord $record, $options =  [], $partial = true)
-    {
-        return LatestBlogsStreamEntry::widget(['blog' => $record]);
     }
 
     public function isEnabled()
