@@ -1,8 +1,6 @@
 <?php
 
-
 namespace humhub\modules\blog\widgets;
-
 
 use humhub\components\Widget;
 use humhub\modules\custom_pages\models\ContainerPage;

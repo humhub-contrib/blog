@@ -1,4 +1,5 @@
 <?php
+
 namespace humhub\modules\blog\integration;
 
 use Yii;
@@ -18,7 +19,7 @@ use humhub\modules\custom_pages\helpers\Url as CustomPagesUrl;
 
 class BlogService extends Component
 {
-    const DEFAULT_TARGET_ID = 'blog_main';
+    public const DEFAULT_TARGET_ID = 'blog_main';
 
     /**
      * @var CustomPagesService
@@ -44,18 +45,18 @@ class BlogService extends Component
     public function registerTargets(CustomPagesTargetEvent $event)
     {
         // We do not support global pages for now
-        if(!$event->container || $event->type !== PageType::Page) {
+        if (!$event->container || $event->type !== PageType::Page) {
             return;
         }
 
-        if($event->container->moduleManager->isEnabled('blog')) {
+        if ($event->container->moduleManager->isEnabled('blog')) {
             $target = new Target([
                 'id' => static::DEFAULT_TARGET_ID,
                 'icon' => Module::ICON,
                 'accessRoute' => Url::ROUTE_INDEX,
                 'contentTypes' => [MarkdownType::ID, TemplateType::ID],
                 'contentName' => Yii::t('BlogModule.base', 'Blog'),
-                'name' => Yii::t('BlogModule.base', 'Blogs')
+                'name' => Yii::t('BlogModule.base', 'Blogs'),
             ]);
 
             $target->setFieldSetting('icon', false);
@@ -73,11 +74,11 @@ class BlogService extends Component
      */
     public function getBlogCount(ContentContainerActiveRecord $container)
     {
-        if(!$this->isCustomPagesInstalled($container)) {
+        if (!$this->isCustomPagesInstalled($container)) {
             return 0;
         }
 
-        if(!isset(static::$_blogCount[$container->id]) !== null) {
+        if (!isset(static::$_blogCount[$container->id]) !== null) {
             static::$_blogCount[$container->id] = $this->findBlogs($container)->count();
         }
 
@@ -86,7 +87,7 @@ class BlogService extends Component
 
     public function getLatestBlogs(ContentContainerActiveRecord $container)
     {
-        if(!$this->isCustomPagesInstalled($container)) {
+        if (!$this->isCustomPagesInstalled($container)) {
             return null;
         }
 
@@ -105,11 +106,11 @@ class BlogService extends Component
      */
     public function getBlogById($id, ContentContainerActiveRecord $container)
     {
-        if(!$this->isCustomPagesInstalled($container)) {
+        if (!$this->isCustomPagesInstalled($container)) {
             return null;
         }
 
-        return $this->customPagesService->getSingleContent($id,static::DEFAULT_TARGET_ID, PageType::Page, $container);
+        return $this->customPagesService->getSingleContent($id, static::DEFAULT_TARGET_ID, PageType::Page, $container);
     }
 
     /**
@@ -137,7 +138,7 @@ class BlogService extends Component
      */
     public function findBlogs(ContentContainerActiveRecord $container, $orderBy = 'id ASC')
     {
-        if(!$this->isCustomPagesInstalled($container)) {
+        if (!$this->isCustomPagesInstalled($container)) {
             return null;
         }
 
