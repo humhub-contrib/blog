@@ -1,6 +1,6 @@
 <?php
 
-namespace  humhub\modules\blog;
+namespace humhub\modules\blog;
 
 use humhub\modules\blog\integration\BlogService;
 use humhub\modules\custom_pages\models\PageType;
@@ -41,7 +41,7 @@ class Events
                 'label' => Yii::t('BlogModule.base', 'Blog'),
                 'group' => 'modules',
                 'url' => Url::toIndex($space),
-                'icon' => '<i class="fa '.Module::ICON.'"></i>',
+                'icon' => '<i class="fa ' . Module::ICON . '"></i>',
                 'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'blog'),
             ]);
         }

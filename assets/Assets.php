@@ -1,6 +1,6 @@
 <?php
 
-namespace  humhub\modules\blog\assets;
+namespace humhub\modules\blog\assets;
 
 use humhub\modules\activity\assets\ActivityAsset;
 use humhub\modules\stream\assets\StreamAsset;
@@ -35,15 +35,15 @@ class Assets extends AssetBundle
     * @var array change forceCopy to true when testing your js in order to rebuild this assets on every request (otherwise they will be cached)
     */
     public $publishOptions = [
-        'forceCopy' => false
+        'forceCopy' => false,
     ];
 
     public $js = [
-        'js/humhub.blog.js'
+        'js/humhub.blog.js',
     ];
 
     public $css = [
-        'css/humhub.blog.css'
+        'css/humhub.blog.css',
     ];
 
     /**
@@ -51,7 +51,7 @@ class Assets extends AssetBundle
      */
     public $depends = [
         ActivityAsset::class,
-        StreamAsset::class
+        StreamAsset::class,
     ];
 
 }

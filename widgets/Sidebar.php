@@ -1,8 +1,6 @@
 <?php
 
-
 namespace humhub\modules\blog\widgets;
-
 
 use humhub\widgets\BaseSidebar;
 

@@ -8,7 +8,6 @@
 
 namespace humhub\modules\blog\controllers;
 
-
 use humhub\modules\blog\actions\LatestBlogStream;
 use humhub\modules\blog\assets\Assets;
 use humhub\modules\blog\helpers\Url;
@@ -45,8 +44,8 @@ class ViewController extends ContentContainerController
         return [
             'stream' => [
                 'class' => LatestBlogStream::class,
-                'contentContainer' => $this->contentContainer
-            ]
+                'contentContainer' => $this->contentContainer,
+            ],
         ];
     }
 
@@ -70,7 +69,7 @@ class ViewController extends ContentContainerController
             'nextBlog' => $nextBlog,
             'prevBlog' => $prevBlog,
             'isCustomPagesEnabled' => $this->blogService->isCustomPagesInstalled($this->contentContainer),
-            'blogCount' => $this->blogService->getBlogCount($this->contentContainer)
+            'blogCount' => $this->blogService->getBlogCount($this->contentContainer),
         ]);
     }
 
@@ -84,7 +83,7 @@ class ViewController extends ContentContainerController
     {
         $blog = $this->blogService->getBlogById($id, $this->contentContainer);
 
-        if(!$blog) {
+        if (!$blog) {
             throw new HttpException(404);
         }
 
@@ -98,12 +97,12 @@ class ViewController extends ContentContainerController
             'prevBlog' => $prevBlog,
             'container' => $this->getSpace(),
             'sidebar' => false,
-            'isCustomPagesEnabled' => $this->blogService->isCustomPagesInstalled($this->contentContainer)
+            'isCustomPagesEnabled' => $this->blogService->isCustomPagesInstalled($this->contentContainer),
         ]);
 
         return $this->asJson([
             'output' => $output,
-            'url' => $blog->getUrl()
+            'url' => $blog->getUrl(),
         ]);
     }
 

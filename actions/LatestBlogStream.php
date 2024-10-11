@@ -11,7 +11,6 @@ use humhub\modules\space\models\Space;
 use humhub\modules\stream\actions\ContentContainerStream;
 use humhub\modules\stream\models\StreamQuery;
 
-
 class LatestBlogStream extends ContentContainerStream
 {
     /**
@@ -21,7 +20,7 @@ class LatestBlogStream extends ContentContainerStream
 
     public function init()
     {
-        if($this->isEnabled()) {
+        if ($this->isEnabled()) {
             $this->includes = ['humhub\modules\custom_pages\models\ContainerPage'];
         }
 
@@ -49,19 +48,19 @@ class LatestBlogStream extends ContentContainerStream
 
     public static function renderEntry(ContentActiveRecord $record, $options =  [], $partial = true)
     {
-         return LatestBlogsStreamEntry::widget(['blog' => $record]);
-     }
+        return LatestBlogsStreamEntry::widget(['blog' => $record]);
+    }
 
     /**
      * @inheritdoc
      */
     public function setupFilters()
     {
-        if($this->isEnabled()) {
+        if ($this->isEnabled()) {
             $this->activeQuery->innerJoin('custom_pages_container_page', 'content.object_id=custom_pages_container_page.id');
             $this->activeQuery->andWhere(['custom_pages_container_page.target' => BlogService::DEFAULT_TARGET_ID]);
 
-            if($this->contentContainer instanceof Space && !$this->contentContainer->isAdmin()) {
+            if ($this->contentContainer instanceof Space && !$this->contentContainer->isAdmin()) {
                 $this->activeQuery->andWhere(['custom_pages_container_page.admin_only' => 0]);
             }
         }

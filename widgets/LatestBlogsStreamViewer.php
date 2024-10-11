@@ -1,11 +1,8 @@
 <?php
 
-
 namespace humhub\modules\blog\widgets;
 
-
 use humhub\modules\stream\widgets\StreamViewer;
-
 
 class LatestBlogsStreamViewer extends StreamViewer
 {

@@ -9,7 +9,7 @@ use humhub\modules\content\components\ContentContainerModule;
 
 class Module extends ContentContainerModule
 {
-    const ICON = 'fa-rss';
+    public const ICON = 'fa-rss';
 
     /**
      * @inheritdoc
